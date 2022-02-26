@@ -6,17 +6,22 @@ import Checkout from "./pages/checkout/Checkout";
 import Category from "./components/categories/Category";
 import Cart from "./pages/cart/Cart"
 import Products from "./pages/products/Products";
-import Navbar from "./components/navbar/Navbar";
+import Layout from "./utils/Layout";
+import SignIn from "./containers/signin/SignIn";
+import SignUp from "./containers/sign-up/SignUp";
 
 function App() {
   return (
     <>
-      <Navbar />
       <Routes>
-        <Route path="/">
+        <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path='seller' element={<Seller />} />
           <Route path='checkout' element={<Checkout />} />
+          <Route path='auth'>
+            <Route path='signin' element={<SignIn />} />
+            <Route path='signup' element={<SignUp />} />
+          </Route>
           <Route path='view' element={<Category />}>
             <Route index element={<Category />} />
             <Route path="products" element={<Products />} />

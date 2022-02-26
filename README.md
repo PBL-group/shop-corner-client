@@ -11,8 +11,8 @@ ShopCorner is an online platform to buy and sell stuff online
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/nmktad/crwn-clothing">
-    <img src="./src/assets/images/Logo.svg" alt="Logo" width="100" height="100">
+  <a href="https://github.com/PBL-group/shop-corner-client">
+    <img src="./src/assets/images/brands/Promo and Company Logo.svg" alt="Logo" width="100" height="100">
   </a>
 
   <h3 align="center">ShopCorner</h3>

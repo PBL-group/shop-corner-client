@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Logo from '../../assets/images/Logo.svg'
+import Logo from '../../assets/images/brands/NavLogo.svg'
  
 const Navbar = () => (
     <header className='sticky'>
