@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ShopCorner | Sell and Buy anything
+ShopCorner is an online platform to buy and sell stuff online
 
-## Available Scripts
+<div id="top"></div>
 
-In the project directory, you can run:
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/nmktad/crwn-clothing">
+    <img src="./src/assets/images/Logo.svg" alt="Logo" width="100" height="100">
+  </a>
 
-### `npm start`
+  <h3 align="center">ShopCorner</h3>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  <p>
+    project documentation
+    <br />
+    <a href="https://github.com/PBL-group/shop-corner-client"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="#">View Project Live (Not Available at the moment)</a>
+    ·
+    <a href="https://github.com/PBL-group/shop-corner-client/issues">Report problems and bugs</a>
+    ·
+    <a href="https://github.com/PBL-group/shop-corner-client/issues">Request Feature</a>
+  </p>
+</div>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Project Contents</summary>
+  <ol>
+    <li><a href="#project-description">Project Description</a></li>
+    <li><a href="#built-with">Built With</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-### `npm test`
+## Project Description
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<div>
+    <img src="./src/assets/crwn-frontpage.png" alt="project front page">
+</div>
 
-### `npm run build`
+This Project is Built by a team affiliated with project based learning Program Created by Mr. Chere Lemma Lecturer, Software Engineering at Addis Ababa Science and Technology University(AASTU). The aim of this project is to expand the knowledge and experience of students involved in this program using different projects that we'll build.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Built With
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* [HTML]
+* [CSS]
+* [Javascript]
+* [React]
+* [Redux]
+* [ContextAPI]
+* [GraphQL]
+* [Node]
+* [Express]
+* [MongoDB]
+* [MySQL]
 
-### `npm run eject`
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<!-- LICENSE -->
+## License
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<!-- CONTACT -->
+## Contact
 
-## Learn More
+Nathnael Tadesse (CTO) - [@nmktad](https://twitter.com/nmktad) - nmktadesse@gmail.com
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Project Link: [https://github.com/PBL-group/shop-corner-client](https://github.com/PBL-group/shop-corner-client)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### Code Splitting
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* [GitHub Pages](https://pages.github.com)
+* [Font Awesome](https://fontawesome.com)
 
-### Analyzing the Bundle Size
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/PBL-group/shop-corner-client.svg?style=for-the-badge
+[contributors-url]: https://github.com/PBL-group/shop-corner-client/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/PBL-group/shop-corner-client.svg?style=for-the-badge
+[forks-url]: https://github.com/PBL-group/shop-corner-client/network/members
+[stars-shield]: https://img.shields.io/github/stars/PBL-group/shop-corner-client.svg?style=for-the-badge
+[stars-url]: https://github.com/PBL-group/shop-corner-client/stargazers
+[issues-shield]: https://img.shields.io/github/issues/PBL-group/shop-corner-client.svg?style=for-the-badge
+[issues-url]: https://github.com/PBL-group/shop-corner-client/issues
+[license-shield]: https://img.shields.io/github/license/PBL-group/shop-corner-client.svg?style=for-the-badge
+[license-url]: https://github.com/PBL-group/shop-corner-client/blob/master/LICENSE.txt
