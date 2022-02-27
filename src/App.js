@@ -9,6 +9,8 @@ import Products from "./pages/products/Products";
 import Layout from "./utils/Layout";
 import SignIn from "./containers/signin/SignIn";
 import SignUp from "./containers/sign-up/SignUp";
+import View from "./utils/View";
+import Error from "./pages/error/Error";
 
 function App() {
   return (
@@ -22,12 +24,12 @@ function App() {
             <Route path='signin' element={<SignIn />} />
             <Route path='signup' element={<SignUp />} />
           </Route>
-          <Route path='view' element={<Category />}>
+          <Route path='view' element={<View />}>
             <Route index element={<Category />} />
             <Route path="products" element={<Products />} />
             <Route path="cart" element={<Cart />} />
           </Route>
-          <Route path="*" element={<div>Not Found</div>} />
+          <Route path="*" element={<Error />} />
         </Route>
       </Routes>
     </>

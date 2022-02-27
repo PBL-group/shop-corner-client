@@ -3,7 +3,14 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    fontFamily: {
+      'neue': ['Bebas Neue', 'cursive'],
+      'sans': ['Encode Sans Expanded', 'sans-serif'],
+      'display': ['Oswald'],
+      'body': ["Open Sans"],
+      'poppins': ['Poppins', 'sans-serif'],
+    },
+    extend: {}
   },
   plugins: [],
 }
