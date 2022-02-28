@@ -20,6 +20,7 @@ const Navbar = () => (
                         <ul className='hidden lg:flex order-1 w-2/5'>
                             <li className='py-4 px-2'><Link to='shop'>Shop</Link></li>
                             <li className='py-4 px-2'><Link to='collections'>Collections</Link></li>
+                            <li className='py-4 px-2'><Link to='sellers'>sellers</Link></li>
                         </ul>
                         <ul className='flex order-3 w-full justify-end flex-1 lg:flex-none lg:w-2/5'>
                             <li className='py-4 px-2 w-1/2 hidden sm:inline'>
