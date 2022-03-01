@@ -4,7 +4,6 @@ import Home from "./pages/home/Home";
 import Seller from "./pages/seller/Seller";
 import Checkout from "./pages/checkout/Checkout";
 import Category from "./components/categories/Category";
-import Cart from "./pages/cart/Cart"
 import Products from "./pages/products/Products";
 import Layout from "./utils/Layout";
 import SignIn from "./containers/signin/SignIn";
@@ -27,7 +26,6 @@ function App() {
           <Route path='view' element={<View />}>
             <Route index element={<Category />} />
             <Route path="products" element={<Products />} />
-            <Route path="cart" element={<Cart />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Route>

@@ -41,7 +41,7 @@ const Home = () => {
         title="Student Backpack" 
         description="Heritage running silhouette, inspired by the '70s. The comfort is unmatched with a breathable lightweight nylon and suede upper, padded insole and shock-absorbing rubber sole." 
       />
-      {/* <Message /> */}
+      <Message />
     </div>
   )
 }

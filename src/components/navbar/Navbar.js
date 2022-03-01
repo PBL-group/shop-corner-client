@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { MdOutlineShoppingBasket, MdTurnedInNot, MdPersonOutline } from "react-icons/md";
 import Logo from '../../assets/images/brands/NavLogo.svg'
 import Searchbar from '../searchbar/Searchbar';
+import Cart from '../cart/Cart';
  
 const Navbar = () => (
     <>
@@ -38,7 +39,7 @@ const Navbar = () => (
                             </li>
                             <li className='py-4 px-2'>
                                 <Link className='text-2xl' to='cart'>
-                                    <MdOutlineShoppingBasket />
+                                    <Cart />
                                 </Link>
                             </li>
                         </ul>
