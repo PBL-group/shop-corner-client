@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { MdOutlineShoppingBasket, MdTurnedInNot, MdPersonOutline } from "react-icons/md";
+import { MdTurnedInNot, MdPersonOutline } from "react-icons/md";
 import Logo from '../../assets/images/brands/NavLogo.svg'
 import Searchbar from '../searchbar/Searchbar';
 import Cart from '../cart/Cart';
- 
-const Navbar = () => (
+import Dropdown from '../cart/Dropdown';
+
+const Navbar = ({currentUser}) => {
+    const [hidden, setHidden] = useState(true)
+
+    return (
     <>
         <div className='w-full flex bg-neutral-200 py-1 px-8 justify-between font-sans'>
             <small className='text-xs'>Get Best offers for anything you need</small>
@@ -21,7 +25,7 @@ const Navbar = () => (
                         <ul className='hidden lg:flex order-1 w-2/5'>
                             <li className='py-4 px-2'><Link to='shop'>Shop</Link></li>
                             <li className='py-4 px-2'><Link to='collections'>Collections</Link></li>
-                            <li className='py-4 px-2'><Link to='sellers'>sellers</Link></li>
+                            <li className='py-4 px-2'><Link to='seller'>sellers</Link></li>
                         </ul>
                         <ul className='flex order-3 w-full justify-end flex-1 lg:flex-none lg:w-2/5'>
                             <li className='py-4 px-2 w-1/2 hidden sm:inline'>
@@ -37,17 +41,23 @@ const Navbar = () => (
                                     <MdTurnedInNot />
                                 </Link>
                             </li>
-                            <li className='py-4 px-2'>
+                            <li className='py-4 px-2' onMouseEnter={()=> setHidden(false)} onMouseLeave={()=>setHidden(true)} >
                                 <Link className='text-2xl' to='cart'>
                                     <Cart />
                                 </Link>
+                                {
+                                    hidden ? null : <Dropdown onMouseEnter={()=> setHidden(false)} onMouseLeave={()=>setHidden(true)} />
+                                }
                             </li>
                         </ul>
+                        
                     </div>
+
                 </nav>
             </div>
         </header>
     </>
 )
+}
 
 export default Navbar
