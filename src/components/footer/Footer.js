@@ -63,7 +63,7 @@ const Footer = () => (
                     <div className='flex justify-center border-t mt-6'>
                         <div className='p-8 flex flex-col lg:flex-row lg:justify-between w-full'>
                             <form className='flex flex-1 flex-col sm:flex-row sm:align-center'>
-                                <label className='self-center p-4' for='region'>Choose your Region</label>
+                                <label className='self-center p-4' htmlFor='region'>Choose your Region</label>
                                 <select className='w-10/12 h-[3rem] md:w-80' name='region'>
                                     <option value="addis-ababa">Addis Ababa</option>
                                     <option value="adama">Adama</option>
