@@ -1,46 +1,49 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Card from '../../components/card/Card'
 import Message from '../../components/message/Message'
+import { request } from 'graphql-request'
 
-const Home = () => {
+function Home () {
+
+  const [products, setProducts] = useState(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { products } = await request(
+        'https://api-eu-central-1.graphcms.com/v2/cl08k9ftx42sd01z3elao1129/master',
+        `
+          {
+            products {
+              name
+              price
+              slug
+              images {
+                url
+              }
+              id
+            }
+          }
+        `
+      );
+
+      setProducts(products);
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
-    <div className='flex gap-8 flex-wrap p-8'>
-      <Card 
-        price={25}
-        img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRwGR6wcWMLImAsHW-4cLT-hhtPeRARsbgNCOjaZ11-G3t780WTAYL26VZDv56zgTcvK0&usqp=CAU"
-        title="Student Backpack" 
-        description="Heritage running silhouette, inspired by the '70s. The comfort is unmatched with a breathable lightweight nylon and suede upper, padded insole and shock-absorbing rubber sole." 
-      />
-      <Card 
-        price={25}
-        img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRwGR6wcWMLImAsHW-4cLT-hhtPeRARsbgNCOjaZ11-G3t780WTAYL26VZDv56zgTcvK0&usqp=CAU"
-        title="Student Backpack" 
-        description="Heritage running silhouette, inspired by the '70s. The comfort is unmatched with a breathable lightweight nylon and suede upper, padded insole and shock-absorbing rubber sole." 
-      />
-      <Card 
-        price={25}
-        img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRwGR6wcWMLImAsHW-4cLT-hhtPeRARsbgNCOjaZ11-G3t780WTAYL26VZDv56zgTcvK0&usqp=CAU"
-        title="Student Backpack" 
-        description="Heritage running silhouette, inspired by the '70s. The comfort is unmatched with a breathable lightweight nylon and suede upper, padded insole and shock-absorbing rubber sole." 
-      />
-      <Card 
-        price={25}
-        img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRwGR6wcWMLImAsHW-4cLT-hhtPeRARsbgNCOjaZ11-G3t780WTAYL26VZDv56zgTcvK0&usqp=CAU"
-        title="Student Backpack" 
-        description="Heritage running silhouette, inspired by the '70s. The comfort is unmatched with a breathable lightweight nylon and suede upper, padded insole and shock-absorbing rubber sole." 
-      />
-      <Card 
-        price={25}
-        img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRwGR6wcWMLImAsHW-4cLT-hhtPeRARsbgNCOjaZ11-G3t780WTAYL26VZDv56zgTcvK0&usqp=CAU"
-        title="Student Backpack" 
-        description="Heritage running silhouette, inspired by the '70s. The comfort is unmatched with a breathable lightweight nylon and suede upper, padded insole and shock-absorbing rubber sole." 
-      />
-      <Card 
-        price={25}
-        img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRwGR6wcWMLImAsHW-4cLT-hhtPeRARsbgNCOjaZ11-G3t780WTAYL26VZDv56zgTcvK0&usqp=CAU"
-        title="Student Backpack" 
-        description="Heritage running silhouette, inspired by the '70s. The comfort is unmatched with a breathable lightweight nylon and suede upper, padded insole and shock-absorbing rubber sole." 
-      />
+    <div className='flex gap-8 flex-wrap justify-center'>
+      
+      {!products ? (
+          'Loading'
+        ) : (
+          products.map((product) => (
+            <Card key={product.id} product={product} />
+          ))
+        )
+      }
+
       <Message />
     </div>
   )
