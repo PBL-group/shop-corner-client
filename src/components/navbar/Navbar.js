@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { MdTurnedInNot, MdPersonOutline } from "react-icons/md";
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux'
+import { selectCartHidden } from '../../redux/cart/cart.selectors'
+import { toggleCartHidden } from '../../redux/cart/cart.actions'
+
 import Logo from '../../assets/images/brands/NavLogo.svg'
 import Searchbar from '../searchbar/Searchbar';
 import Cart from '../cart/Cart';
 import Dropdown from '../cart/Dropdown';
 
-const Navbar = ({currentUser}) => {
-    const [hidden, setHidden] = useState(true)
-
+const Navbar = ({hidden, toggleCartHidden}) => {
     return (
     <>
         <div className='w-full flex bg-neutral-200 py-1 px-8 justify-between font-sans'>
@@ -41,16 +44,15 @@ const Navbar = ({currentUser}) => {
                                     <MdTurnedInNot />
                                 </Link>
                             </li>
-                            <li className='py-4 px-2' onMouseEnter={()=> setHidden(false)} onMouseLeave={()=>setHidden(true)} >
-                                <Link className='text-2xl' to='cart'>
+                            <li className='py-4 px-2' onMouseEnter={toggleCartHidden} onMouseLeave={toggleCartHidden} >
+                                <Link className='text-2xl' to=''>
                                     <Cart />
                                 </Link>
                                 {
-                                    hidden ? null : <Dropdown onMouseEnter={()=> setHidden(false)} onMouseLeave={()=>setHidden(true)} />
+                                    hidden ? null : <Dropdown />
                                 }
                             </li>
                         </ul>
-                        
                     </div>
 
                 </nav>
@@ -60,4 +62,12 @@ const Navbar = ({currentUser}) => {
 )
 }
 
-export default Navbar
+const mapStateToProps = createStructuredSelector({
+    hidden: selectCartHidden
+})
+
+const mapDispatchToProps = dispatch => ({
+    toggleCartHidden: ()=> dispatch(toggleCartHidden())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

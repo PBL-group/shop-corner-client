@@ -6,8 +6,6 @@ import Checkout from "./pages/checkout/Checkout";
 import Category from "./components/categories/Category";
 import Products from "./pages/products/Products";
 import Layout from "./utils/Layout";
-import SignIn from "./containers/signin/SignIn";
-import SignUp from "./containers/sign-up/SignUp";
 import Error from "./pages/error/Error";
 import Profile from "./pages/profile/Profile";
 import ProfileDisplay from "./pages/profile/ProfileDisplay";
@@ -23,14 +21,11 @@ function App() {
           <Route path='profile' element={<Profile />}>
             <Route path=':id' element={<ProfileDisplay />} />
           </Route>
-          <Route path='auth' element={<SignIn />}>
-            <Route path='signin' element={<SignIn />} />
-            <Route path='signup' element={<SignUp />} />
-          </Route>
+          <Route path='signin' />
+          <Route path='signup' />
           <Route path='category' element={<Category />} />
-          <Route path="products" element={<Products />}>
-            <Route path=":slug" element={<ProductDetail />} />
-          </Route>
+          <Route path="products" element={<Products />} />
+          <Route path="product/:id" element={<ProductDetail />} />
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
