@@ -23,7 +23,7 @@ ShopCorner is an online platform to buy and sell stuff online
     <a href="https://github.com/PBL-group/shop-corner-client"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="#">View Project Live (Not Available at the moment)</a>
+    <a href="https://live-shopcorner.vercel.app">View Project Live</a>
     ·
     <a href="https://github.com/PBL-group/shop-corner-client/issues">Report problems and bugs</a>
     ·
