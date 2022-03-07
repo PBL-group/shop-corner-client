@@ -4,10 +4,9 @@ import Message from '../../components/message/Message'
 import { request } from 'graphql-request'
 import { updateCollections } from '../../redux/shop/shop.actions';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { selectCollectionsForPreview } from '../../redux/shop/shop.selector';
+import CollectionsOverviewComponent from '../../components/collections-overview/collections-overview.component';
 
-function Home ({collections, updateCollections}) {	
+function Home ({updateCollections}) {	
 	
 	useEffect(() => {
     const fetchCollections = async () => {
@@ -62,19 +61,15 @@ function Home ({collections, updateCollections}) {
   return (
 
     <div className='flex gap-8 flex-wrap justify-center'>
-
+      <CollectionsOverviewComponent />
 
       <Message />
     </div>
   )
 }
 
-const mapStateToProps = createStructuredSelector({
-  collections: selectCollectionsForPreview
-})
-
 const mapDispatchToProps = dispatch => ({
   updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(null, mapDispatchToProps)(Home)

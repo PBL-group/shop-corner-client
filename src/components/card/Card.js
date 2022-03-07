@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { addItem } from '../../redux/cart/cart.actions';
 
-const Card = ({product}, addItem) => {
-    const {name, images, price, id} = product
+const Card = ({item, addItem}) => {
+    const {name, images, price, id} = item
 
     const navigate = useNavigate();
 
@@ -21,9 +21,10 @@ const Card = ({product}, addItem) => {
                 </div>
             </div>
     
-            <Button customStyles="self-center absolute hidden top-64 group-hover:flex group-hover:opacity-90 group-hover:w-11/12"  
+            <Button onClick={() => addItem(item)}
+                    customStyles="self-center absolute hidden top-64 group-hover:flex group-hover:opacity-90 group-hover:w-11/12"  
                     inverted
-                    // onClick={() => addItem(product)}
+                    
             >
                 Add to Cart
             </Button>
@@ -32,7 +33,7 @@ const Card = ({product}, addItem) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    addItem: product=> dispatch(addItem(product))
+    addItem: item=> dispatch(addItem(item))
 })
 
 export default connect(null, mapDispatchToProps)(Card)
