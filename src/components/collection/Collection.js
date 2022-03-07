@@ -1,13 +1,12 @@
 import React from "react";
 import Card from '../card/Card'
-import './collection.styles.scss'
 
 const Collection = ({ name, products }) => (
-    <div className='collection-preview'>
-        <h1 className='title'>{ name.toUpperCase() }</h1>
-        <div className='preview'>
+    <div className='flex flex-col mb-8'>
+        <h1 className='text-lg mb-6'>{ name.toUpperCase() }</h1>
+        <div className='flex flex-wrap gap-4'>
             {
-                products.filter((item, idx) => idx < 4).map((item) => (
+                products.map((item) => (
                     <Card key={item.id} item={item} />
                 ))
             }

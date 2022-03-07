@@ -4,7 +4,7 @@ import Message from '../../components/message/Message'
 import { request } from 'graphql-request'
 import { updateCollections } from '../../redux/shop/shop.actions';
 import { connect } from 'react-redux';
-import CollectionsOverviewComponent from '../../components/collections-overview/collections-overview.component';
+import CollectionsOverview from '../../components/collections-overview/CollectionsOverview';
 
 function Home ({updateCollections}) {	
 	
@@ -59,12 +59,13 @@ function Home ({updateCollections}) {
   }, [updateCollections]);  
 
   return (
-
-    <div className='flex gap-8 flex-wrap justify-center'>
-      <CollectionsOverviewComponent />
-
-      <Message />
+    <div className='flex justify-center'>
+      <div className='container w-full'>
+        <CollectionsOverview />
+        <Message />
+      </div>
     </div>
+    
   )
 }
 

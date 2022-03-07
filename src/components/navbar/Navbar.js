@@ -35,19 +35,19 @@ const Navbar = ({hidden, toggleCartHidden}) => {
                                 <Searchbar />
                             </li>
                             <li className='py-4 px-2'>
-                                <Link className='text-2xl' to='cart'>
+                                <Link className='text-2xl' to=''>
                                     <MdPersonOutline />
                                 </Link>
                             </li>
                             <li className='py-4 px-2'>
-                                <Link className='text-2xl' to='cart'>
+                                <Link className='text-2xl' to=''>
                                     <MdTurnedInNot />
                                 </Link>
                             </li>
                             <li className='py-4 px-2' onMouseEnter={toggleCartHidden} onMouseLeave={toggleCartHidden} >
-                                <Link className='text-2xl' to=''>
+                                <div className='text-2xl' to=''>
                                     <Cart />
-                                </Link>
+                                </div>
                                 {
                                     hidden ? null : <Dropdown />
                                 }

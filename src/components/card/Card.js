@@ -10,12 +10,12 @@ const Card = ({item, addItem}) => {
     const navigate = useNavigate();
 
     return (
-        <div className='group relative h-[22rem] w-fit-content min-w-[18rem] flex flex-col border rounded-xl align-center collection-item px-4'>
+        <div className=' group relative h-[22rem] w-fit-content min-w-[18rem] flex flex-col border rounded-xl align-center collection-item px-4'>
             <div className='w-full h-[95%]' onClick={()=> { navigate(`product/${id}`)}}>
                 <div className='w-full h-[95%] bg-contain bg-no-repeat mb-[] bg-center image group-hover:opacity-80 mb-1'
                         style={{backgroundImage: `url(${images[0].url})`}} 
                 />     
-                <div className='w-full font-sans flex justify-between text-md h-8'>
+                <div className='w-full font-neue flex justify-between text-lg h-8'>
                     <span>{name}</span>
                     <span>${price}</span>
                 </div>
