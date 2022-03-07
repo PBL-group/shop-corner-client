@@ -10,6 +10,9 @@ import Error from "./pages/error/Error";
 import Profile from "./pages/profile/Profile";
 import ProfileDisplay from "./pages/profile/ProfileDisplay";
 import ProductDetail from "./pages/products/ProductDetail";
+import Authentication from "./pages/authentication/Authentication";
+import SignIn from "./containers/signin/SignIn";
+import SignUp from "./containers/signup/SignUp";
 
 function App() {
   return (
@@ -23,6 +26,10 @@ function App() {
           </Route>
           <Route path='signin' />
           <Route path='signup' />
+          <Route path='auth' element={<Authentication />} >
+            <Route index path='signin' element={<SignIn />} />  
+            <Route path="signup" element={<SignUp />} />  
+          </Route>
           <Route path='category' element={<Category />} />
           <Route path="products" element={<Products />} />
           <Route path="product/:id" element={<ProductDetail />} />

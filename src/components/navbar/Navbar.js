@@ -35,7 +35,7 @@ const Navbar = ({hidden, toggleCartHidden}) => {
                                 <Searchbar />
                             </li>
                             <li className='py-4 px-2'>
-                                <Link className='text-2xl' to=''>
+                                <Link className='text-2xl' to='auth/signin'>
                                     <MdPersonOutline />
                                 </Link>
                             </li>
