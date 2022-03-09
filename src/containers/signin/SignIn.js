@@ -43,8 +43,8 @@ export default class SignIn extends Component {
                 <span>Sign in with your email and password</span>
 
                 <form onSubmit={this.handleSubmit}>
-                    <FormInput name='email' type='email' value={email} required onChange={this.handleChange} label='email' />
-                    <FormInput name='password' type='password' value={password} required onChange={this.handleChange} label='password' />
+                    <FormInput name='email' type='email' value={email} required onChange={this.handleChange} label='Email' />
+                    <FormInput name='password' type='password' value={password} required onChange={this.handleChange} label='Password' />
 
                     <div className='flex justify-between'>
                         <Button type="submit" >Sign In</Button>
