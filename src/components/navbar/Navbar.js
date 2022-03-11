@@ -4,14 +4,20 @@ import { MdTurnedInNot, MdPersonOutline } from "react-icons/md";
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux'
 import { selectCartHidden } from '../../redux/cart/cart.selectors'
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { toggleCartHidden } from '../../redux/cart/cart.actions'
 
 import Logo from '../../assets/images/brands/NavLogo.svg'
 import Searchbar from '../searchbar/Searchbar';
 import Cart from '../cart/Cart';
 import Dropdown from '../cart/Dropdown';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase/firebase.config';
 
-const Navbar = ({hidden, toggleCartHidden}) => {
+const Navbar = ({hidden, toggleCartHidden, currentUser}) => {
+
+    console.log("from redux", currentUser)
+
     return (
     <>
         <div className='w-full flex bg-neutral-200 py-1 px-8 justify-between font-sans'>
@@ -35,9 +41,21 @@ const Navbar = ({hidden, toggleCartHidden}) => {
                                 <Searchbar />
                             </li>
                             <li className='py-4 px-2'>
-                                <Link className='text-2xl' to='auth/signin'>
-                                    <MdPersonOutline />
-                                </Link>
+                                {
+                                    currentUser ?  
+                                    <Link className='text-2xl' to=''>
+                                        <MdPersonOutline 
+                                            onClick={
+                                                async () => {
+                                                    await signOut(auth);
+                                                }
+                                            } 
+                                        />
+                                    </Link> : 
+                                    <Link to='auth'>
+                                        <span>Sign In</span>
+                                    </Link>
+                                }
                             </li>
                             <li className='py-4 px-2'>
                                 <Link className='text-2xl' to=''>
@@ -63,11 +81,12 @@ const Navbar = ({hidden, toggleCartHidden}) => {
 }
 
 const mapStateToProps = createStructuredSelector({
-    hidden: selectCartHidden
+    hidden: selectCartHidden,
+    currentUser: selectCurrentUser
 })
 
 const mapDispatchToProps = dispatch => ({
-    toggleCartHidden: ()=> dispatch(toggleCartHidden())
+    toggleCartHidden: () => dispatch(toggleCartHidden()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

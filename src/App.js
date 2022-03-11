@@ -14,16 +14,19 @@ import Profile from "./pages/profile/Profile";
 import ProfileDisplay from "./pages/profile/ProfileDisplay";
 import ProductDetail from "./pages/products/ProductDetail";
 import Authentication from "./pages/authentication/Authentication";
-import SignIn from "./containers/signin/SignIn";
-import SignUp from "./containers/signup/SignUp";
 import './App.css';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase/firebase.config';
+import { setCurrentUser } from './redux/user/user.actions';
 
-function App({updateCollections}) {
+function App({updateCollections, setCurrentUser}) {
 
   useEffect(() => {
+    onAuthStateChanged(auth, currentUser => setCurrentUser(currentUser))
+
     const fetchCollections = async () => {
       const { collections } = await request(
-        'https://api-eu-central-1.graphcms.com/v2/cl08k9ftx42sd01z3elao1129/master',
+        'https://api-eu-central-1.graphcms.com/v2/cl08k9ftx42sd01z3elao1129/master' ,
         `
           {
             collections {
@@ -68,7 +71,7 @@ function App({updateCollections}) {
     }
 
     fetchCollections();
-  }, [updateCollections]);  
+  }, [setCurrentUser, updateCollections]);  
 
 
   return (
@@ -82,10 +85,7 @@ function App({updateCollections}) {
           </Route>
           <Route path='signin' />
           <Route path='signup' />
-          <Route path='auth' element={<Authentication />} >
-            <Route index path='signin' element={<SignIn />} />  
-            <Route path="signup" element={<SignUp />} />  
-          </Route>
+          <Route path='auth' element={<Authentication />} />
           <Route path='category' element={<Category />} />
           <Route path="products" element={<Products />} />
           <Route path="product/:id" element={<ProductDetail />} />
@@ -96,7 +96,8 @@ function App({updateCollections}) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap))
+  updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap)),
+  setCurrentUser: user => dispatch(setCurrentUser(user))
 })
 
 export default connect(null, mapDispatchToProps)(App);

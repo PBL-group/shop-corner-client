@@ -1,34 +1,55 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { connect } from 'react-redux';
+import { setCurrentUser } from '../../redux/user/user.actions'
+import { auth } from '../../firebase/firebase.config'
 import FormInput from '../../components/input/FormInput';
 import Button from '../../components/button/Button'
+import { useNavigate } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-function SignUp () {
+function SignUp ({setCurrentUser, currentUser}) {
+    const navigate = useNavigate()
 
-    const[displayName, setDisplayName] = useState("");
+    const[userName, setUserName] = useState("");
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("");
     const[confirmPassword, setConfirmPassword] = useState("");
 
     const handleSubmit = async event => {
-        event.preventDefault();
-
         if(password !== confirmPassword) {
             alert('Password doesn\'t match');
             return;
         }
 
         try {
-            // const { user } = await createUserWithEmailAndPassword(auth, email, password);
-            // await createUserProfileDocument(user, {displayName})
-
-            setDisplayName(null)
-            setEmail(null)
-            setPassword(null)
-            setConfirmPassword(null)
-        } catch (error) {
+            event.preventDefault();
+            const { user } = await createUserWithEmailAndPassword(auth, email, password);
+            updateProfile(user, {
+                displayName: userName
+            })
+            
+            console.log("from signup", user)
+            setCurrentUser(user)
+            setUserName("")
+            setEmail("")
+            setPassword("")
+            setConfirmPassword("")
+        } catch (error) { 
             console.log(error);
         }
     }
+
+    useEffect(()=> {
+        if(currentUser) {
+            navigate('/')
+        }
+
+        return function cleanup() {
+            setCurrentUser(currentUser)
+        };
+    }, [setCurrentUser, currentUser, navigate])
 
     return (
         <div className='flex flex-col w-96'>
@@ -38,9 +59,11 @@ function SignUp () {
             <form className='sign-up-form' onSubmit={handleSubmit}>
                 <FormInput 
                     type='text'
-                    name='displayName'
-                    value={displayName}
-                    onChange={event => setDisplayName(event.target.value)}
+                    name='userName'
+                    value={userName}
+                    onChange={
+                        event => setUserName(event.target.value)
+                    }
                     label='Display Name'
                     required
                 />  
@@ -48,7 +71,9 @@ function SignUp () {
                     type='email'
                     name='email'
                     value={email}
-                    onChange={event => setEmail(event.target.value)}
+                    onChange={
+                        event => setEmail(event.target.value)
+                    }
                     label='Email'
                     required
                 />  
@@ -56,7 +81,9 @@ function SignUp () {
                     type='password'
                     name='password'
                     value={password}
-                    onChange={event => setPassword(event.target.value)}
+                    onChange={
+                        event => setPassword(event.target.value)
+                    }
                     label='Password'
                     required
                 />  
@@ -64,7 +91,9 @@ function SignUp () {
                     type='password'
                     name='confirmPassword'
                     value={confirmPassword}
-                    onChange={event => setConfirmPassword(event.target.value)}
+                    onChange={
+                        event => setConfirmPassword(event.target.value)
+                    }
                     label='Confirm Password'
                 />  
                 <Button type='submit'>Sign Up</Button>
@@ -73,5 +102,12 @@ function SignUp () {
     )
 }
 
+const mapDispatchToProps = dispatch => ({
+    setCurrentUser: user => dispatch(setCurrentUser(user))
+})
 
-export default SignUp
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser
+})
+
+export default  connect(mapStateToProps, mapDispatchToProps)(SignUp)
