@@ -1,58 +1,44 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import FormInput from '../../components/input/FormInput';
-import { auth, signInWithGoogle } from '../../firebase/firebase'
-import { signInWithEmailAndPassword } from "firebase/auth";
 import Button from '../../components/button/Button';
 
-export default class SignIn extends Component {
-    constructor() {
-        super();
+function SignIn() {
 
-        this.state = {
-            email: '',
-            password: ''
-        }
-    }
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("")
 
-    handleSubmit = async event => {
+    const handleSubmit = async event => {
         event.preventDefault();
 
-        const { email, password } = this.state;
-
         try {
-            await signInWithEmailAndPassword(auth, email, password)
+            // await signInWithEmailAndPassword(auth, email, password)
 
-            this.setState({email: '', password: ''})
+            setEmail(null)
+            setPassword(null)
         } catch (error) {
             console.log(error)
         }
     }
-
-    handleChange = event => {
-        const { value, name } = event.target;
-
-        this.setState({ [name]: value})
-    }
-
-    render() {
-        const { email, password } = this.state;
         
-        return (
-            <div className='flex flex-col'>
-                <h2 className='my-2'>I already have an Account</h2>
-                <span>Sign in with your email and password</span>
+    return (
+        <div className='flex flex-col'>
+            <h2 className='my-2'>I already have an Account</h2>
+            <span>Sign in with your email and password</span>
 
-                <form onSubmit={this.handleSubmit}>
-                    <FormInput name='email' type='email' value={email} required onChange={this.handleChange} label='Email' />
-                    <FormInput name='password' type='password' value={password} required onChange={this.handleChange} label='Password' />
+            <form onSubmit={handleSubmit}>
+                <FormInput name='email' type='email' value={email} required onChange={event => setEmail(event.target.value)} label='Email' />
+                <FormInput name='password' type='password' value={password} required onChange={event=> setPassword(event.target.value)} label='Password' />
 
-                    <div className='flex justify-between'>
-                        <Button type="submit" >Sign In</Button>
-                        <Button onClick={signInWithGoogle} type='submit' isGoogleSignIn >Sign in With google</Button>
-                    </div>
-                </form>
-            </div>
-        )
-    }
+                <div className='flex justify-between'>
+                    <Button type="submit" >Sign In</Button>
+                    {/* for google sign in button there should be an onclick method that will be run 
+                    which will have a functionality implemented with firebase */}
+                    <Button type='submit' isGoogleSignIn >Sign in With google</Button>
+                </div>
+            </form>
+        </div>
+    )
 }
+
+export default SignIn
 
