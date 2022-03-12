@@ -16,15 +16,15 @@ import { auth } from '../../firebase/firebase.config';
 
 const Navbar = ({hidden, toggleCartHidden, currentUser}) => {
 
-    console.log("from redux", currentUser)
-
     return (
     <>
-        <div className='w-full flex bg-neutral-200 py-1 px-8 justify-between font-sans'>
-            <small className='text-xs'>Get Best offers for anything you need</small>
-            <small className='text-xs'>Connect With different brands</small>
-            <small className='text-xs'>Expand your Business online</small>
-            <small className='text-xs'>Partner and collaborate with different people</small>
+        <div className='hidden lg:w-full lg:flex bg-neutral-200 justify-center font-sans'>
+            <div className='container flex justify-between'>
+                <Link to='/home'><small className='text-xs'>Get Best offers for anything you need</small></Link>
+                <Link to='/home'><small className='text-xs'>Connect With different brands</small></Link>
+                <Link to='/home'><small className='text-xs'>Expand your Business online</small></Link>
+                <Link to='/home'><small className='text-xs'>Partner and collaborate with different people</small></Link>
+            </div>  
         </div>
         <header className='z-50 font-neue text-lg sticky top-0 bg-slate-50'>
             <div className=' w-full py-1.5 px-8 flex justify-center'>
@@ -53,7 +53,7 @@ const Navbar = ({hidden, toggleCartHidden, currentUser}) => {
                                         />
                                     </Link> : 
                                     <Link to='auth'>
-                                        <span>Sign In</span>
+                                        <button className='border px-4 text-md rounded-sm' >Sign In</button>
                                     </Link>
                                 }
                             </li>
