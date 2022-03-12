@@ -21,83 +21,83 @@ import { setCurrentUser } from './redux/user/user.actions';
 
 function App({updateCollections, setCurrentUser}) {
 
-  useEffect(() => {
-    onAuthStateChanged(auth, currentUser => setCurrentUser(currentUser))
+	useEffect(() => {
+		onAuthStateChanged(auth, currentUser => setCurrentUser(currentUser))
 
-    const fetchCollections = async () => {
-      const { collections } = await request(
-        'https://api-eu-central-1.graphcms.com/v2/cl08k9ftx42sd01z3elao1129/master' ,
-        `
-          {
-            collections {
-              id
-              name
-              products {
-                name
-                price
-                slug
-                images {
-                  url
-                }
-                id
-              }
-              slug
-            }
-          }
-        `
-      );
+		const fetchCollections = async () => {
+			const { collections } = await request(
+				'https://api-eu-central-1.graphcms.com/v2/cl08k9ftx42sd01z3elao1129/master' ,
+				`
+					{
+						collections {
+							id
+							name
+							products {
+								name
+								price
+								slug
+								images {
+									url
+								}
+								id
+							}
+							slug
+						}
+					}
+				`
+			);
 
-      const convertCollectionsToMaps = collections => {
-        const transformedCollections = collections.map(collection => {
-          const { name, id, products } = collection;
+			const convertCollectionsToMaps = collections => {
+				const transformedCollections = collections.map(collection => {
+					const { name, id, products } = collection;
 
-          return  {
-			  slug: encodeURI(name.toLowerCase()),
-			  id,
-			  name,
-			  products
-          }
-        })
+					return  {
+				slug: encodeURI(name.toLowerCase()),
+				id,
+				name,
+				products
+					}
+				})
 		
 		return transformedCollections.reduce((accumulator, collection) => {
 			accumulator[collection.name.toLowerCase()] = collection
 			return accumulator;
 		},{})
-      }
+			}
 
-	  const collectionsMap = convertCollectionsToMaps(collections)
-	  updateCollections(collectionsMap);
+		const collectionsMap = convertCollectionsToMaps(collections)
+		updateCollections(collectionsMap);
 
-    }
+		}
 
-    fetchCollections();
-  }, [setCurrentUser, updateCollections]);  
+		fetchCollections();
+	}, [setCurrentUser, updateCollections]);  
 
 
-  return (
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path='seller' element={<Seller />} />
-          <Route path='checkout' element={<Checkout />} />
-          <Route path='profile' element={<Profile />}>
-            <Route path=':id' element={<ProfileDisplay />} />
-          </Route>
-          <Route path='signin' />
-          <Route path='signup' />
-          <Route path='auth' element={<Authentication />} />
-          <Route path='category' element={<Category />} />
-          <Route path="products" element={<Products />} />
-          <Route path="product/:id" element={<ProductDetail />} />
-          <Route path="*" element={<Error />} />
-        </Route>
-      </Routes>
-  );
+	return (
+			<Routes>
+				<Route path="/" element={<Layout />}>
+					<Route index element={<Home />} />
+					<Route path='seller' element={<Seller />} />
+					<Route path='checkout' element={<Checkout />} />
+					<Route path='profile' element={<Profile />}>
+						<Route path=':id' element={<ProfileDisplay />} />
+					</Route>
+					<Route path='signin' />
+					<Route path='signup' />
+					<Route path='auth' element={<Authentication />} />
+					<Route path='category' element={<Category />} />
+					<Route path="products" element={<Products />} />
+					<Route path="product/:id" element={<ProductDetail />} />
+					<Route path="*" element={<Error />} />
+				</Route>
+			</Routes>
+	);
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap)),
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+	updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap)),
+	setCurrentUser: user => dispatch(setCurrentUser(user))
 })
 
 export default connect(null, mapDispatchToProps)(App);
