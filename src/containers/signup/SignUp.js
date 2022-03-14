@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { connect } from 'react-redux';
-import { setCurrentUser } from '../../redux/user/user.actions'
 import { auth } from '../../firebase/firebase.config'
 import FormInput from '../../components/input/FormInput';
 import Button from '../../components/button/Button'
 import { useNavigate } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { toast } from 'react-toastify';
 
-function SignUp ({setCurrentUser, currentUser}) {
+function SignUp ({currentUser}) {
     const navigate = useNavigate()
 
     const[userName, setUserName] = useState("");
@@ -19,7 +19,7 @@ function SignUp ({setCurrentUser, currentUser}) {
 
     const handleSubmit = async event => {
         if(password !== confirmPassword) {
-            alert('Password doesn\'t match');
+            toast.error('Passwords doesn\'t match');
             return;
         }
 
@@ -29,9 +29,6 @@ function SignUp ({setCurrentUser, currentUser}) {
             updateProfile(user, {
                 displayName: userName
             })
-            
-            console.log("from signup", user)
-            setCurrentUser(user)
             setUserName("")
             setEmail("")
             setPassword("")
@@ -46,10 +43,7 @@ function SignUp ({setCurrentUser, currentUser}) {
             navigate('/')
         }
 
-        return function cleanup() {
-            setCurrentUser(currentUser)
-        };
-    }, [setCurrentUser, currentUser, navigate])
+    }, [currentUser, navigate])
 
     return (
         <div className='flex flex-col w-96'>
@@ -102,12 +96,8 @@ function SignUp ({setCurrentUser, currentUser}) {
     )
 }
 
-const mapDispatchToProps = dispatch => ({
-    setCurrentUser: user => dispatch(setCurrentUser(user))
-})
-
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser
 })
 
-export default  connect(mapStateToProps, mapDispatchToProps)(SignUp)
+export default  connect(mapStateToProps)(SignUp)

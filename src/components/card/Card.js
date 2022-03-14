@@ -3,6 +3,7 @@ import Button from '../button/Button'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { addItem } from '../../redux/cart/cart.actions';
+import { toast } from 'react-toastify';
 
 const Card = ({item, addItem}) => {
     const {name, images, price, id} = item
@@ -21,7 +22,11 @@ const Card = ({item, addItem}) => {
                 </div>
             </div>
     
-            <Button onClick={() => addItem(item)}
+            <Button 
+                    onClick={() => {
+                        toast.dark("Added item to cart")
+                        return addItem(item)}
+                    }
                     customStyles="self-center absolute hidden top-64 group-hover:flex group-hover:opacity-90 group-hover:w-11/12"  
                     inverted
                     

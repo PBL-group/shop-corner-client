@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import FormInput from '../../components/input/FormInput';
 import Button from '../../components/button/Button';
 import { auth, googleAuthProvider } from '../../firebase/firebase.config';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { setCurrentUser } from '../../redux/user/user.actions';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { setCurrentUser } from '../../redux/user/user.actions';
 
-function SignIn({ setCurrentUser, currentUser }) {
+const signinUser = async ( authtoken ) => await axios.post(`${process.env.REACT_APP_API}/signin`, {}, {
+    headers: {
+        authtoken
+    }
+})
+
+function SignIn({ currentUser, setCurrentUser }) {
     const signInWithGoogle = () => signInWithPopup(auth, googleAuthProvider);
 
     const [email, setEmail] = useState("");
@@ -22,9 +29,8 @@ function SignIn({ setCurrentUser, currentUser }) {
 
         try {
             const { user } = await signInWithEmailAndPassword(auth, email, password)
-            setCurrentUser(user)
-            console.log("from signin", user)
-            setCurrentUser(user)
+            
+            signinUser((await user.getIdTokenResult()).token)
             setEmail("")
             setPassword("")
         } catch (error) {
@@ -40,7 +46,7 @@ function SignIn({ setCurrentUser, currentUser }) {
         return function cleanup() {
             setCurrentUser(currentUser)
         };
-    }, [setCurrentUser, currentUser, navigate])
+    }, [setCurrentUser, navigate, currentUser])
         
     return (
         <div className='flex flex-col'>
@@ -69,4 +75,5 @@ const mapStateToProps = createStructuredSelector({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
+
 

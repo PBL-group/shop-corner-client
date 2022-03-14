@@ -18,11 +18,21 @@ import './App.css';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase/firebase.config';
 import { setCurrentUser } from './redux/user/user.actions';
+import { setUserIdToken } from './redux/user/user.actions';
 
-function App({updateCollections, setCurrentUser}) {
+function App({updateCollections, setCurrentUser, setUserIdToken}) {
 
 	useEffect(() => {
 		onAuthStateChanged(auth, currentUser => setCurrentUser(currentUser))
+
+		onAuthStateChanged(auth, async (currentUser) => {
+			if(currentUser) {
+				const userIdToken = (await currentUser.getIdTokenResult()).token
+				return setUserIdToken(userIdToken)
+			} else 
+
+			return setUserIdToken(null)
+		})
 
 		const fetchCollections = async () => {
 			const { collections } = await request(
@@ -71,7 +81,7 @@ function App({updateCollections, setCurrentUser}) {
 		}
 
 		fetchCollections();
-	}, [setCurrentUser, updateCollections]);  
+	}, [setCurrentUser, setUserIdToken, updateCollections]);  
 
 
 	return (
@@ -97,7 +107,8 @@ function App({updateCollections, setCurrentUser}) {
 
 const mapDispatchToProps = dispatch => ({
 	updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap)),
-	setCurrentUser: user => dispatch(setCurrentUser(user))
+	setCurrentUser: user => dispatch(setCurrentUser(user)),
+	setUserIdToken: token => dispatch(setUserIdToken(token))
 })
 
 export default connect(null, mapDispatchToProps)(App);
