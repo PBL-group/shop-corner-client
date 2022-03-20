@@ -10,8 +10,9 @@ const Layout = () => {
 		<>
 			<Navbar />
 				<ToastContainer
+					limit={4}
 					position="bottom-right"
-					autoClose={1000}
+					autoClose={2000}
 					hideProgressBar={false}
 					newestOnTop={false}
 					closeOnClick

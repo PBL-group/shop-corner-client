@@ -8,6 +8,13 @@ import { useNavigate } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { toast } from 'react-toastify';
+import axios from 'axios'
+
+const signUpUser = async ( authtoken ) => await axios.post(`${process.env.REACT_APP_API}/signup`, {}, {
+    headers: {
+        authtoken
+    }
+})
 
 function SignUp ({currentUser}) {
     const navigate = useNavigate()
@@ -29,6 +36,9 @@ function SignUp ({currentUser}) {
             updateProfile(user, {
                 displayName: userName
             })
+
+            signUpUser((await user.getIdTokenResult()).token)
+
             setUserName("")
             setEmail("")
             setPassword("")
