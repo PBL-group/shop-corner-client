@@ -99,8 +99,8 @@ function App({updateCollections, setCurrentUser, setUserIdToken}) {
 					<Route path='category' element={<Category />} />
 					<Route path="products" element={<Products />} />
 					<Route path="product/:id" element={<ProductDetail />} />
-					<Route path="*" element={<Error />} />
 				</Route>
+				<Route path="*" element={<Error />} />
 			</Routes>
 	);
 }
